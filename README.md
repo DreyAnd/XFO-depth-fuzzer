@@ -16,5 +16,5 @@
 ./fuzz.sh -d 200
 ```
 
-3. Open the ![https://attacker.com:1337/grandparent.html](https://attacker.com:1337/grandparent.html) in your browser. 
+3. Open the [https://attacker.com:1337/grandparent.html](https://attacker.com:1337/grandparent.html) in your browser. 
 
